@@ -1,7 +1,8 @@
 package d1;
 
-import java.util.*;
 import java.io.*;
+import java.util.*;
+import java.math.*;
 
 /**
 10개의 수를 입력 받아, 평균값을 출력하는 프로그램을 작성하라.
@@ -44,11 +45,25 @@ output.txt
 
 public class Exam_2071 {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
+		int T = Integer.parseInt(br.readLine());
+		for(int i = 1; i <= T; i++) {
+			double sum = 0;
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			
+			while(st.hasMoreTokens()) {
+				sum += Integer.parseInt(st.nextToken());
+			}
+			
+			int avg = (int) Math.round(sum / 10);
+			bw.write("#" + i + " " + avg + "\n");
+		}
+		bw.flush();
+		bw.close();
+		br.close();
 	}
-
 }
