@@ -26,8 +26,17 @@ public class Exam_2027 {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
 		for(int i = 0; i < 5; i++) {
-			for(int j = 0; j <)
+			for(int j = 0; j < 5; j++) {
+				if(j == i)
+					bw.write("#");
+				else
+					bw.write("+");
+			}
+			bw.write("\n");
 		}
+		bw.flush();
+		bw.close();
+		br.close();
 	}
 
 }
