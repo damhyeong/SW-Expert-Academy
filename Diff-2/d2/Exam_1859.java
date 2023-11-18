@@ -64,7 +64,23 @@ public class Exam_1859 {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		int T = Integer.parseInt(br.readLine().trim());
 		
-		
+		for(int t = 1; t <= T; t++) {
+			int len = Integer.parseInt(br.readLine());
+			int[] price = new int[len];
+			
+			StringTokenizer st = new StringTokenizer(br.readLine().trim());
+			for(int i = 0; i < len; i++)
+				price[i] = Integer.parseInt(st.nextToken());
+			
+			long temp = 0;
+			long result = 0;
+			int preNum = price[0];
+			int subMax = price[0];
+			for(int i = 0; i < len; i++) {
+				int nowNum = price[i];
+				
+			}
+		}
 	}
 
 }
