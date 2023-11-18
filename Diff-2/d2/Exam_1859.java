@@ -56,6 +56,7 @@ input.txt
 output.txt
  */
 
+/** 값이 들어가는 모든 곳에 Long을 지정해야 한다!!  */
 public class Exam_1859 {
 
 	public static void main(String[] args) throws IOException {
@@ -66,21 +67,39 @@ public class Exam_1859 {
 		
 		for(int t = 1; t <= T; t++) {
 			int len = Integer.parseInt(br.readLine());
-			int[] price = new int[len];
+			long[] price = new long[len];
 			
 			StringTokenizer st = new StringTokenizer(br.readLine().trim());
-			for(int i = 0; i < len; i++)
-				price[i] = Integer.parseInt(st.nextToken());
+			int maxIndex = 0;
+			for(int i = 0; i < len; i++) {
+				price[i] = Long.parseLong(st.nextToken());
+				maxIndex = price[maxIndex] <= price[i] ? i : maxIndex;
+			}
 			
 			long temp = 0;
 			long result = 0;
-			int preNum = price[0];
-			int subMax = price[0];
-			for(int i = 0; i < len; i++) {
-				int nowNum = price[i];
-				
+			int index = 0;
+			
+			for(int i = 0; i < price.length; i++) {
+				if(i < maxIndex) {
+					temp += price[i]; //최고점 이전에 구매할 대금을 계속 더한다. 
+				} else if(i == maxIndex) {
+					result += (i - index) * price[i] - temp; // 이익에서 구매한 대금을 뺀다.
+					temp = 0; // 대금은 정산되었다. 
+					index = i + 1; // 현재 i 인덱스는 최고점이므로, 다시 계산하지 않는다.
+					maxIndex = index; // 처음 최고 인덱스를 계산했을 때 처럼, 초기 값으로 세팅한다. 
+					
+					// 그 다음 최고점 인덱스를 계산한다.
+					for(int j = index; j < price.length; j++) 
+						maxIndex = price[maxIndex] <= price[j] ? j : maxIndex;
+					
+				}
 			}
+			bw.write("#" + t + " " + result + "\n");
 		}
+		bw.flush();
+		bw.close();
+		br.close();
 	}
 
 }
