@@ -52,8 +52,21 @@ public class Exam_2070 {
 		int T = Integer.parseInt(br.readLine());
 		
 		for(int i = 1; i <= T; i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			int n1 = Integer.parseInt(st.nextToken());
+			int n2 = Integer.parseInt(st.nextToken());
 			
+			if(n1 > n2) {
+				bw.write("#" + i + " " + ">\n");
+			} else if(n1 == n2) {
+				bw.write("#" + i + " " + "=\n");
+			} else if(n1 < n2) {
+				bw.write("#" + i + " " + "<\n");
+			}
 		}
+		bw.flush();
+		bw.close();
+		br.close();
 	}
 
 }
